@@ -114,6 +114,11 @@ public:
     virtual status_t    getRenderPosition(uint32_t *dspFrames) = 0;
 #ifdef QCOM_DIRECTTRACK
     virtual status_t    getPresentationPosition(uint64_t *frames, struct timespec *timestamp) = 0;
+#else
+    /**
+     * Return a recent count of the number of audio frames presented to an external observer.
+     */
+    virtual status_t    getPresentationPosition(uint64_t *frames, struct timespec *timestamp);
 #endif
 
     /**
@@ -133,11 +138,6 @@ public:
         return NO_ERROR;
     }
 #endif
-
-    /**
-     * Return a recent count of the number of audio frames presented to an external observer.
-     */
-    virtual status_t    getPresentationPosition(uint64_t *frames, struct timespec *timestamp);
 
 };
 
